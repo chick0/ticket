@@ -154,6 +154,9 @@ async def handle_tree_error(interaction: discord.Interaction, error: app_command
 
 @client.event
 async def on_ready():
+    user = f"{client.user.name}#{client.user.discriminator}"  # type: ignore
+    logger.info(f"Logged in as {user}")
+
     logger.info("I'm sink!        - Command tree sync start")
     await tree.sync(guild=discord.Object(id=int(environ['GUILD'])))
     logger.info("Now I'm rescued. - Command tree sync finsihed")
